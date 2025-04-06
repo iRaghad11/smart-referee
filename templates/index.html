@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Smart Referee</title>
+    <script>
+        async function getDecision() {
+            let response = await fetch('/decision');  // طلب القرار من API
+            let data = await response.json();
+            document.getElementById("decision").innerText = data.decision;
+        }
+        setInterval(getDecision, 5000);  // تحديث القرار كل 5 ثواني
+    </script>
+</head>
+<body>
+    <h1>Smart Referee System</h1>
+    <p>Decision: <span id="decision">Waiting...</span></p>
+</body>
+</html>
